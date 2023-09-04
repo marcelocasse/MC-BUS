@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for horario_por_dia in horarios_por_dia %}
+  <h3>{{ horario_por_dia.dia }}</h3>
+  <ul>
+    {% for horario in horario_por_dia.horarios.all %}
+      <li>{{ horario }}</li>
+    {% endfor %}
+  </ul>
+{% endfor %}
+</body>
+</html>
