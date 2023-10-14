@@ -24,7 +24,7 @@
                         Lugar de Inicio
             </button>
 
-            //traer los lugares de inicio de la base de datos
+            {% comment %} traer los lugares de inicio de la base de datos {% endcomment %}
             <div class="dropdown-menu w-100 text-center w-auto mt-1" id="btn-start" aria-labelledby="btn-start">
                 <a class="dropdown-item" href="#">SARMIENTO Y URQUIZA</a>
                 <a class="dropdown-item" href="#">PANADERÍA LA PERLA</a>
@@ -34,7 +34,8 @@
                 <a class="dropdown-item" href="#">B° EL COLORADO</a>
                 <a class="dropdown-item" href="#">LIEBIG</a>
                 
-                //Trae todos los horarios
+                {% comment %} Trae todos los horarios {% endcomment %}
+
                 {% for bus in buses %}
                     {% comment %} <a class="dropdown-item" href="#">{{bus.get_lugar_display}}</a> {% endcomment %}
                 {% endfor %}
@@ -46,7 +47,7 @@
                     aria-expanded="false">
                         Lugar de Destino
             </button>
-            //traer los lugares de destino de la base de datos
+            {% comment %} traer los lugares de destino de la base de datos {% endcomment %}
             <div class="dropdown-menu w-100 text-center w-auto mt-1" id="btn-end" aria-labelledby="btn-end">
                 <a class="dropdown-item" href="#">SARMIENTO Y URQUIZA</a>
                 <a class="dropdown-item" href="#">PANADERÍA LA PERLA</a>
@@ -56,8 +57,8 @@
                 <a class="dropdown-item" href="#">B° EL COLORADO</a>
                 <a class="dropdown-item" href="#">LIEBIG</a>
                 
-                //Trae todos los horarios 
-                //Siguiente Mejora Tomar el Dia y buscar por esos horarios
+                {% comment %} Trae todos los horarios 
+                Siguiente Mejora Tomar el Dia y buscar por esos horarios {% endcomment %}
                 {% for bus in buses %}
                     {% comment %} <a class="dropdown-item" href="#">{{bus.get_lugar_display}}</a> {% endcomment %}
                 {% endfor %}

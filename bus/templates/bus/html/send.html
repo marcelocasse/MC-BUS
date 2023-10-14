@@ -1,0 +1,19 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Document</title>
+</head>
+<body>
+    
+    {% for dias in data %}
+
+        <a href="{% url "recived" dia_id=dias.inicio %}">{{dias.inicio}} a {{dias.fin}} </a>
+
+    {% endfor %}
+    
+</body>
+</html>

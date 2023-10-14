@@ -1,18 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    {% for horario_por_dia in horarios_por_dia %}
-  <h3>{{ horario_por_dia.dia }}</h3>
-  <ul>
-    {% for horario in horario_por_dia.horarios.all %}
-      <li>{{ horario }}</li>
-    {% endfor %}
-  </ul>
-{% endfor %}
-</body>
+  </head>
+  <body>
+    {%comment%}
+      Mostramos todos los buses, con su respectivo sector,lugar y horarios
+    {%endcomment%}
+      {% for buses in data %}
+        <h1>Sector : {{buses.nombre_sector}}</h1>
+        <h3>Lugar : {{buses.lugar}}</h3>
+        {% for horario in buses.horarios.all %}
+          {{horario.hora|time:'H:i'}}
+        {% endfor %}
+      {% endfor %}
+  </body>
 </html>

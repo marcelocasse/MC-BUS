@@ -1,9 +1,19 @@
 from django.contrib import admin
-from .models import HorarioPorDia,Dia,Horario, BusSchedule
+from .models import Horario,Lugar,Sector
 
 # Register your models here.
-admin.site.register(BusSchedule)
-# admin.site.register(Time)
-admin.site.register(HorarioPorDia)
-admin.site.register(Dia)
-admin.site.register(Horario)
+
+@admin.register(Horario)
+class HorarioAdmin(admin.ModelAdmin):
+    ordering = ('hora',)
+
+
+@admin.register(Lugar)
+class LugarAdmin(admin.ModelAdmin):
+    ordering = ('nombre_lugar',)
+
+
+@admin.register(Sector)
+class SectorAdmin(admin.ModelAdmin):
+    list_display = ('nombre_sector', 'lugar')
+    search_fields = ('nombre_sector',)

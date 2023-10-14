@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,600;1,700;1,800&family=Poppins:wght@300;400;500;600&display=swap");
 :root {
-  ---primary-color: #3498DB;
-  ---second-color: #D9D9D9;
+  --primary-color: #3498DB;
+  --second-color: #D9D9D9;
 }
 
 * {
@@ -14,60 +14,46 @@ body {
   background-color: #f5f5f5 !important;
 }
 
-.title {
-  user-select: none !important;
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  justify-content: center;
-  padding: 5rem;
-}
-.title img {
-  pointer-events: none;
-}
-.title h1 {
-  font-style: italic;
-  font-weight: 700;
-  font-size: 5rem;
-}
-.title h1 span {
-  padding-left: 1rem;
-  color: var(---primary-color);
-}
-
-.route-selection {
-  display: flex;
-  justify-content: space-evenly;
-}
-.route-selection #btn-start, .route-selection #btn-end {
-  font-family: "Poppins", sans-serif;
-}
-
-.table-responsive {
-  margin-top: 8rem;
-  padding: 5rem;
-}
-.table-responsive .table {
-  text-align: center;
-  border-radius: 20px;
-  overflow: hidden;
-}
-.table-responsive .table thead {
-  filter: drop-shadow(0px 0px 6px #000);
-}
-.table-responsive .table thead th {
-  background-color: var(---primary-color) !important;
-  color: white;
-  font-family: "Poppins", "sans-serif";
-  font-weight: lighter;
-}
-.table-responsive .table td {
-  background-color: var(---second-color) !important;
-}
-
+/***** Footer *****/
 footer {
-  background-color: var(---second-color) !important;
-  min-height: 6rem;
+  background-color: #3498DB;
+  color: white;
+}
+footer p {
+  padding-top: 1rem;
+}
+footer i {
+  color: white;
+}
+
+/***** Brand *****/
+.brand {
+  user-select: none;
+  gap: 1.5rem;
+}
+.brand h1 {
+  font-weight: 700;
+  font-size: 3rem;
+  font-style: italic;
+  gap: 1rem;
+  display: flex;
+}
+.brand h1 span {
+  color: #3498DB;
+}
+.brand img {
+  width: 4rem;
+  user-select: none;
+}
+
+.card {
+  max-width: 15rem;
+}
+.card .card-title {
+  font-size: 0.8rem;
+}
+.card .card-text {
+  font-size: 0.5rem;
 }
 
 /*# sourceMappingURL=style.css.map */
