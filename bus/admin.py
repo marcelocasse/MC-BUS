@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Horario,Lugar,Sector
+from .models import *
 
 # Register your models here.
 
@@ -12,6 +12,9 @@ class HorarioAdmin(admin.ModelAdmin):
 class LugarAdmin(admin.ModelAdmin):
     ordering = ('nombre_lugar',)
 
+@admin.register(Localidad)
+class LocalidadAdmin(admin.ModelAdmin):
+    ordering = ('id',)
 
 @admin.register(Sector)
 class SectorAdmin(admin.ModelAdmin):

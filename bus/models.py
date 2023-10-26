@@ -15,7 +15,7 @@ class Horario(models.Model):
     
 
 class Lugar(models.Model):
-    nombre_lugar = models.CharField(max_length=20,null=False,blank=False)
+    nombre_lugar = models.CharField(max_length=50,null=False,blank=False)
 
     class Meta:
         verbose_name = 'Lugar'
@@ -23,11 +23,22 @@ class Lugar(models.Model):
 
     def __str__(self) -> str:
         return self.nombre_lugar
+
+class Localidad(models.Model):
+    nombre_localidad = models.CharField(max_length=50,null=False,blank=False)
+
+    class Meta:
+        verbose_name = 'Localidad'
+        verbose_name_plural = 'Localidades'
+
+    def __str__(self) -> str:
+        return self.nombre_localidad
     
+
 class Sector(models.Model):
-    nombre_sector = models.CharField(max_length=20,null=False,blank=False)
-    lugar = models.ForeignKey(Lugar,on_delete=models.CASCADE,related_name='lugar')
-    horarios = models.ManyToManyField(Horario,related_name='horarios')
+    nombre_sector = models.ForeignKey("Localidad",on_delete=models.CASCADE,null=False)
+    lugar = models.ForeignKey("Lugar",on_delete=models.CASCADE,null=False,)
+    horarios = models.ManyToManyField("Horario")
 
     class Meta:
         verbose_name = 'Sector'
