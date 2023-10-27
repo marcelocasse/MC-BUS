@@ -22,12 +22,12 @@ const ListarLugares = async (id_localidad) => {
 
 const ListarLocalidades = async () =>{
     try {
-        fetch('./api/sector')
+        fetch('./api/sectores')
         .then((data) => data.json())
         .then((data) => data.data.forEach((element) => {
             let option = document.createElement("option")
-            console.log(element.sector)
-            option.innerHTML = element.sector
+            console.log(element.localidad)
+            option.innerHTML = element.localidad
             option.value = element.id
             localidades.append(option)
         }))
@@ -87,17 +87,6 @@ const ponerhorarios = async () => {
         creartarjetas(dict_horario_inicio['titulo'],dict_horario_inicio['horarios'][index])
         creartarjetas(dict_horario_fin['titulo'],dict_horario_fin['horarios'][index])
     }
-
-    // for (let i of dict_horario_inicio['horarios'].length,) {
-            
-    //         await creartarjetas(dict_horario_inicio['titulo'],hora)
-
-    //         for (let x of dict_horario_fin['horarios']) {
-                
-    //             await creartarjetas(dict_horario_fin['titulo'],x)
-    //             continue;
-    //         }
-    // }
 }
 
 

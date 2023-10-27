@@ -6,6 +6,9 @@ from django.http.response import JsonResponse,HttpResponse
 
 from django.core.exceptions import ObjectDoesNotExist
 
+
+def base(request):
+    return render(request,'bus/html/bus.html',{})
 # Create your views here.
 def mostrar_buses(request):
     buses = Sector.objects.all()
@@ -34,40 +37,37 @@ def  update_horarios(request):
         hora.save()
     return JsonResponse({"Carga":"Completa"})
 
-def api_sector(request):
-    localidad = list(Localidad.objects.all())
+def api_sectores(request):
     result = {"data" : []}
 
-    for local in localidad:
-            item = {}
-            item['id'] = local.pk
-            item['sector'] = local.nombre_localidad
-            item['lugares'] = []
-            
-            sectores = list(Sector.objects.filter(nombre_sector=local.id))
-            for sector in sectores:
-                sub_item = {}
-                sub_item['id'] = sector.lugar.pk
-                sub_item['nombre_lugar'] = sector.lugar.nombre_lugar
-                item['lugares'].append(sub_item)
-            
-            # horario_del_lugar = Horario.objects.filter(sector__id= sector.pk)
-            # horario_formateado = []
+    if Localidad.objects.exists():
 
-            # for horario in horario_del_lugar:
-            #     hora = horario.hora
-            #     horario_formateado.append(hora)
-                    
-            # sub_item['horarios'] = horario_formateado
+        localidad = list(Localidad.objects.all())
 
-            result["data"].append(item)
+        for local in localidad:
+                item = {}
+                item['id'] = local.pk
+                item['localidad'] = local.nombre_localidad
+                item['lugares'] = []
+                
+                sectores = list(Sector.objects.filter(nombre_sector=local.id))
+                for sector in sectores:
+                    sub_item = {}
+                    sub_item['id'] = sector.lugar.pk
+                    sub_item['nombre_lugar'] = sector.lugar.nombre_lugar
+                    item['lugares'].append(sub_item)
 
-            
-    return JsonResponse(result,safe=False)
+                result["data"].append(item)
 
-def api_sector_lugar(request,id_sector):
+                
+        return JsonResponse(result,safe=False)
+    else:
+        result["data"].append("Not Found")
+        return JsonResponse(result,safe=False)
+
+def api_sector_lugar(request,id_localidad):
     try:
-        localidades = Sector.objects.filter(nombre_sector_id=id_sector)
+        localidades = Sector.objects.filter(nombre_sector_id=id_localidad)
         
         item = {'lugares' : []}
         for local in localidades:
@@ -81,14 +81,14 @@ def api_sector_lugar(request,id_sector):
 
 
 
-def api_lugar_horarios(request,id_sector):
+def api_lugar_horarios(request,id_localidad):
     try:
-        horario_del_lugar = Horario.objects.filter(sector__lugar_id= id_sector)
-        lugar = Lugar.objects.get(id=id_sector)
+        horario_del_lugar = Horario.objects.filter(sector__lugar_id= id_localidad)
+        lugar = Lugar.objects.get(id=id_localidad)
         
         item = {}
-        item['Id_Sector'] = id_sector
-        item['Lugar'] = lugar.nombre_lugar
+        item['id_localidad'] = id_localidad
+        item['lugar'] = lugar.nombre_lugar
         
         horario_formateado = []
 

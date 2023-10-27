@@ -1,0 +1,66 @@
+{% extends "bus/html/base.html" %}
+
+{% load static %}
+
+{% block title %}Oterbus | tu empresa de confianza{% endblock title %}
+
+<!-- ========== Header Section ========== -->
+{% block header %}
+    <div class="brand d-flex align-items-center justify-content-center m-4 p-4">
+        <img src="{% static 'bus/Vectorbus.png' %}" alt="bus">
+        <h1>OTERO<span>BUS</span></h1>
+    </div>
+{% endblock header %}
+
+<!-- ========== Main Section ========== -->
+{% block main %}
+    <section class="text-center d-flex flex-column justify-content-center align-items-center w-100">
+        <div class="mb-3 mt-3">
+            <label for="localidades" class="form-label">Localidad</label>
+            <select class="form-select" name="localidades" id="localidades">
+              <option selected>Select one</option>
+            </select>
+          </div>
+          
+          <div class="d-flex flex-row justify-content-around align-items-center w-100">
+            <div class="mb-3">
+                <label for="lugarinicio" class="form-label">Lugar Inicio</label>
+                <select class="form-select" name="lugarinicio" id="lugarinicio">
+                  <option selected>Select one</option>
+                </select>
+              </div>
+              
+              <div class="mb-3">
+                <label for="lugarfinal" class="form-label">Lugar Final</label>
+                <select class="form-select" name="lugarfinal" id="lugarfinal">
+                  <option selected>Select one</option>
+                </select>
+              </div>
+          </div>
+          
+          <button class="btn btn-primary text-center align-items-center justify-content-center d-flex flex-column" id="btnhorarios" type="button">Buscar Horarios</button>
+    
+          <section class="container pt-5 m-0 d-flex justify-content-center aling-items-center">
+            <div class="row" id="sectiontest"></div>
+          </section>
+    </section>
+{% endblock main %}
+
+
+<!-- ========== Footer Section ========== -->
+{% block footer %}
+    <div class="text-center">
+                    
+        <p class="flex-wrap">Copyright &copy; 2023 Todos los derechos reservados. </p>
+        
+        <ul class="list-unstyled d-flex justify-content-around align-items-center fs-1 flex-wrap">
+            <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></i></li>
+            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
+        </ul>
+    </div>
+{% endblock footer %}
+
+{% block script %}
+<script src="{% static 'bus/js/index.js' %}"></script>
+{% endblock script %}
