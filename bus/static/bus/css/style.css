@@ -8,6 +8,7 @@
   margin: 0;
   padding: 0;
   font-family: "Open Sans", sans-serif;
+  box-sizing: border-box;
 }
 
 body {
@@ -46,14 +47,21 @@ footer i {
   user-select: none;
 }
 
-.card {
-  max-width: 15rem;
+#card-w {
+  width: 10rem;
+  min-height: 8rem !important;
 }
-.card .card-title {
+#card-w .card-title {
   font-size: 0.8rem;
 }
-.card .card-text {
-  font-size: 0.5rem;
+#card-w #card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+#card-w #card-body p {
+  font-size: 1rem;
 }
 
 /*# sourceMappingURL=style.css.map */

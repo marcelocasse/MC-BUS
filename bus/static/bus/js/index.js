@@ -26,7 +26,6 @@ const ListarLocalidades = async () =>{
         .then((data) => data.json())
         .then((data) => data.data.forEach((element) => {
             let option = document.createElement("option")
-            console.log(element.localidad)
             option.innerHTML = element.localidad
             option.value = element.id
             localidades.append(option)
@@ -56,26 +55,25 @@ const  mostrarhorarios = async (lugar_inicio,valor) => {
         switch (valor){
             case "inicio":
                 dict_horario_inicio['horarios'] = data.data.Horarios
-                dict_horario_inicio['titulo'] = data.data.Lugar
+                dict_horario_inicio['titulo'] = data.data.lugar
                 break;
             case "fin":
                 dict_horario_fin['horarios'] =  data.data.Horarios
-                dict_horario_fin['titulo'] = data.data.Lugar
+                dict_horario_fin['titulo'] = data.data.lugar
                 break;
         }
 }
 
-const creartarjetas = async (titulo,hora) => {
+const creartarjetas = async (titulo,lugar,hora) => {
     tarjeta=`
-        <div class="col-5 col-sm-4">
-            <div class="card shadow rounded-4 text-center mb-3 mt-3">
-                <div class="card-header bg-primary rounded-top-4 text-white fs-4 p-2">test</div>
-                    <div class="card-body m-0 p-0">
-                        <p class="card-text fs-4 text-wrap p-2">${titulo}</p>
+        
+            <div class="card shadow rounded-4 text-center mb-3 mt-3" id="card-w">
+                <div class="card-header bg-primary rounded-top-4 text-white fs-4 p-2">${titulo}</div>
+                    <div class="card-body" id="card-body">
+                        <p class="card-text text-wrap p-2">${lugar}</p>
                     </div>
                 <div class="card-footer fw-bold fs-4">${hora}</div>
             </div>
-        </div>
     `
     sectiontest.innerHTML+= tarjeta
 }
@@ -84,8 +82,8 @@ const creartarjetas = async (titulo,hora) => {
 const ponerhorarios = async () => {
 
     for (let index = 0; index < dict_horario_inicio['horarios'].length; index++) {
-        creartarjetas(dict_horario_inicio['titulo'],dict_horario_inicio['horarios'][index])
-        creartarjetas(dict_horario_fin['titulo'],dict_horario_fin['horarios'][index])
+        creartarjetas("Sale",dict_horario_inicio['titulo'],dict_horario_inicio['horarios'][index])
+        creartarjetas("Llega",dict_horario_fin['titulo'],dict_horario_fin['horarios'][index])
     }
 }
 

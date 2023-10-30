@@ -2,58 +2,71 @@
 
 {% load static %}
 
-{% block title %}Oterbus | tu empresa de confianza{% endblock title %}
+{% block title %}Oterbus | Tu empresa de confianza{% endblock title %}
 
 <!-- ========== Header Section ========== -->
-{% block header %}
-    <div class="brand d-flex align-items-center justify-content-center m-4 p-4">
+{% block nav %}
+    <div class="brand d-flex align-items-center justify-content-center m-4 p-4 border-2 border-bottom">
         <img src="{% static 'bus/Vectorbus.png' %}" alt="bus">
         <h1>OTERO<span>BUS</span></h1>
     </div>
-{% endblock header %}
+{% endblock nav %}
 
 <!-- ========== Main Section ========== -->
 {% block main %}
-    <section class="text-center d-flex flex-column justify-content-center align-items-center w-100">
-        <div class="mb-3 mt-3">
-            <label for="localidades" class="form-label">Localidad</label>
-            <select class="form-select" name="localidades" id="localidades">
-              <option selected>Select one</option>
-            </select>
-          </div>
-          
-          <div class="d-flex flex-row justify-content-around align-items-center w-100">
-            <div class="mb-3">
+    <section class="container">
+        <div class="row">
+          <div class="col-12 col-md-12">
+            
+            <div class="d-flex flex-column align-items-center">
+
+              <div class="mb-3 mt-3 w-50">
+                <label for="localidades" class="form-label">Localidad</label>
+                <select class="form-select text-center" name="localidades" id="localidades">
+                  <option selected disabled>Selecciona uno</option>
+                </select>
+              </div>
+  
+              <div class="mb-3 w-50">
                 <label for="lugarinicio" class="form-label">Lugar Inicio</label>
-                <select class="form-select" name="lugarinicio" id="lugarinicio">
-                  <option selected>Select one</option>
+                <select class="form-select text-center" name="lugarinicio" id="lugarinicio">
+                  <option selected disabled>Selecciona uno</option>
                 </select>
               </div>
               
-              <div class="mb-3">
+              <div class="mb-3 w-50">
                 <label for="lugarfinal" class="form-label">Lugar Final</label>
-                <select class="form-select" name="lugarfinal" id="lugarfinal">
-                  <option selected>Select one</option>
+                <select class="form-select text-center" name="lugarfinal" id="lugarfinal">
+                  <option selected disabled>Selecciona uno</option>
                 </select>
               </div>
-          </div>
-          
-          <button class="btn btn-primary text-center align-items-center justify-content-center d-flex flex-column" id="btnhorarios" type="button">Buscar Horarios</button>
-    
-          <section class="container pt-5 m-0 d-flex justify-content-center aling-items-center">
-            <div class="row" id="sectiontest"></div>
-          </section>
+            
+              <button class="btn btn-primary text-center mt-3" id="btnhorarios" type="button">Buscar Horarios</button>
+            </div>
+            
+ 
+           </div>
+        </div>
+    </section>
+
+    <section class="container mt-3">
+      <div class="row">
+        <div class="col-12 col-md-12">
+          <div class="col-12 col-sm-8 col-md-6 col-lg-8 d-flex flex-row flex-wrap align-items-center
+          justify-content-center gap-3 m-auto" id="sectiontest"></div>
+        </div>
+      </div>
     </section>
 {% endblock main %}
 
 
 <!-- ========== Footer Section ========== -->
 {% block footer %}
-    <div class="text-center">
+    <div class="container-fluid sticky-bottom text-center mt-5">
                     
-        <p class="flex-wrap">Copyright &copy; 2023 Todos los derechos reservados. </p>
+        <p class="d-flex flex-column gap-3 text-wrap">Copyright &copy; 2023 <span>Todos los derechos reservados.</span></p>
         
-        <ul class="list-unstyled d-flex justify-content-around align-items-center fs-1 flex-wrap">
+        <ul class="list-unstyled d-flex justify-content-around align-items-center fs-1 flex-wrap m-0 p-3">
             <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></i></li>
             <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
             <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
