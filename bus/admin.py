@@ -3,20 +3,12 @@ from .models import *
 
 # Register your models here.
 
+
+
+admin.site.register(Sector)
+admin.site.register(Autobus)
+admin.site.register(Parada)
 @admin.register(Horario)
 class HorarioAdmin(admin.ModelAdmin):
-    ordering = ('hora',)
+    list_display = ('hora','parada_id','parada')
 
-
-@admin.register(Lugar)
-class LugarAdmin(admin.ModelAdmin):
-    ordering = ('nombre_lugar',)
-
-@admin.register(Localidad)
-class LocalidadAdmin(admin.ModelAdmin):
-    ordering = ('id',)
-
-@admin.register(Sector)
-class SectorAdmin(admin.ModelAdmin):
-    list_display = ('nombre_sector', 'lugar')
-    search_fields = ('nombre_sector',)
