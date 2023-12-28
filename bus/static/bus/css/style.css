@@ -64,4 +64,18 @@ footer i {
   font-size: 1rem;
 }
 
+.banner {
+  margin-bottom: 3rem;
+  max-height: 220px;
+  padding-top: 10px;
+  text-align: center;
+  width: 100%;
+}
+.banner img {
+  margin: auto;
+  max-height: 180px;
+  max-width: 970px;
+  min-width: 830px;
+}
+
 /*# sourceMappingURL=style.css.map */

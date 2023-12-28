@@ -2,13 +2,14 @@ window.addEventListener('load', async ()=>{
     await CargaInicial()
 })
 
-let btnhorarios = document.getElementById("btnhorarios")
 
+let btnhorarios = document.getElementById("btnhorarios")
 
 btnhorarios.addEventListener('click',async () => {
     sectiontest.innerHTML = ''
     if (dict_horario_fin.horarios.length > 0 && dict_horario_inicio.horarios.length > 0){
         await ponerhorarios()
+        spanestimados.classList.remove("visually-hidden")
     }else{
         sectiontest.innerHTML = `
         <div class="alert alert-danger" role="alert">
@@ -81,7 +82,6 @@ const ListarLugarFinal = async (id_parada) => {
 }
 
 
-
 const  cargarhorarios = async (lugar_inicio,valor) => {
 
     try {
@@ -106,7 +106,6 @@ const  cargarhorarios = async (lugar_inicio,valor) => {
 
 const creartarjetas = async (titulo,lugar,hora) => {
     tarjeta=`
-        
             <div class="card shadow rounded-4 text-center mb-3 mt-3" id="card-w">
                 <div class="card-header bg-primary rounded-top-4 text-white fs-4 p-2">${titulo}</div>
                     <div class="card-body" id="card-body">
@@ -121,117 +120,30 @@ const creartarjetas = async (titulo,lugar,hora) => {
 const ponerhorarios = async () => {
 
     console.log(dict_horario_inicio.horarios.length +" === "+ dict_horario_fin.horarios.length)
-    if (dict_horario_inicio.horarios.length === dict_horario_fin.horarios.length){
-        for (let index = 0; index < dict_horario_inicio.horarios.length; index++) {
-            if (dict_horario_inicio.horarios[index] < dict_horario_fin.horarios[index]){
-                creartarjetas("Sale",dict_horario_inicio.titulo,dict_horario_inicio.horarios[index])
-                if (dict_horario_fin.horarios[index]){
-                    creartarjetas("Llega",dict_horario_fin.titulo,dict_horario_fin.horarios[index])
-                }
-            }else{
-                sectiontest.innerHTML = `
-                <div class="alert alert-danger" role="alert">
-                    No hay horarios existentes <i class="fa-solid fa-circle-exclamation"></i>
-                </div>`
-            }
+
+    //verificamos si los horarios de inicio son mayores a los horarios de fin
+    if(dict_horario_inicio.horarios.length > dict_horario_fin.horarios.length){
+        if(dict_horario_inicio.horarios[0].slice(0,2) - dict_horario_fin.horarios[0].slice(0,2) == -2){
+            dict_horario_inicio.horarios.shift()
+        }
+        if(dict_horario_inicio.horarios[dict_horario_inicio.horarios.length - 1].slice(0,2) - dict_horario_fin.horarios[dict_horario_fin.horarios.length - 1].slice(0,2) == 4){
+            dict_horario_inicio.horarios.pop()
         }
     }
-    if (dict_horario_fin.horarios.length > dict_horario_inicio.horarios.length){
-        dict_horario_fin.horarios.shift()
-        for (let index = 0; index < dict_horario_inicio.horarios.length; index++) {
-            if (dict_horario_inicio.horarios[index] < dict_horario_fin.horarios[index]){
-                creartarjetas("Sale",dict_horario_inicio.titulo,dict_horario_inicio.horarios[index])
-                if (dict_horario_fin.horarios[index]){
-                    creartarjetas("Llega",dict_horario_fin.titulo,dict_horario_fin.horarios[index])
-                }
-            }else{
-                sectiontest.innerHTML = `
-                <div class="alert alert-danger" role="alert">
-                    No hay horarios existentes <i class="fa-solid fa-circle-exclamation"></i>
-                </div>`
+    //Recorremos el array ya filtrado por la condicion anterior
+    for (let index = 0; index < dict_horario_inicio.horarios.length; index++) {
+        if (dict_horario_inicio.horarios[index] < dict_horario_fin.horarios[index]){
+            creartarjetas("Sale",dict_horario_inicio.titulo,dict_horario_inicio.horarios[index])
+            if (dict_horario_fin.horarios[index]){
+                creartarjetas("Llega",dict_horario_fin.titulo,dict_horario_fin.horarios[index])
             }
+        }else{
+            sectiontest.innerHTML = `
+            <div class="alert alert-danger" role="alert">
+                No hay horarios existentes <i class="fa-solid fa-circle-exclamation"></i>
+            </div>`
         }
     }
-    if (dict_horario_inicio.horarios.length > dict_horario_fin.horarios.length){
-        dict_horario_inicio.horarios.shift()
-        for (let index = 0; index < dict_horario_inicio.horarios.length; index++) {
-            if (dict_horario_inicio.horarios[index] < dict_horario_fin.horarios[index]){
-                creartarjetas("Sale",dict_horario_inicio.titulo,dict_horario_inicio.horarios[index])
-                if (dict_horario_fin.horarios[index]){
-                    creartarjetas("Llega",dict_horario_fin.titulo,dict_horario_fin.horarios[index])
-                }
-            }else{
-                sectiontest.innerHTML = `
-                <div class="alert alert-danger" role="alert">
-                    No hay horarios existentes <i class="fa-solid fa-circle-exclamation"></i>
-                </div>`
-            }
-        }
-    }
-    // for (let index = 0; index < dict_horario_inicio['horarios'].length; index++) {
-        
-    //     console.log(
-    //         dict_horario_inicio['horarios'][index] +" | "+ dict_horario_fin['horarios'][index]
-    //     )
-    //     if (dict_horario_inicio['horarios'][index] < dict_horario_fin['horarios'][index]){
-    //         creartarjetas("Sale",dict_horario_inicio['titulo'],dict_horario_inicio['horarios'][index])
-    //         if (dict_horario_fin['horarios'][index]){
-    //             creartarjetas("Llega",dict_horario_fin['titulo'],dict_horario_fin['horarios'][index])
-    //         }
-    //     }
-        
-    // }
-
-    // const horariosMostrados = new Set();
-
-    // for (let i = 0; i <= dict_horario_inicio['horarios'].length; i++) {
-    //     let horaInicio = dict_horario_inicio['horarios'][i];
-    //     let horaFin = dict_horario_fin['horarios'][i];
-
-    //     const horariosPermitidos = ['06:10', '06:15', '06:20', '06:40'];
-
-
-    //     if (dict_horario_inicio['horarios'].length == dict_horario_fin['horarios'].length){
-    //         console.log(horaInicio + " | " + horaFin)
-    //         while (horaInicio >= horaFin) {
-    //             console.log("Bucle -"+horaInicio + " | " + horaFin)
-    //             i++; // Avanzar al siguiente horario en horaFin
-    //             if (i >= dict_horario_fin['horarios'].length) {
-    //             break; // No hay más horarios en horaFin, salir del bucle
-    //             }
-    //             horaFin = dict_horario_fin['horarios'][i];
-    //         }
-    
-    //         if (horaInicio < horaFin && !horariosMostrados.has(horaInicio)) {
-    //             creartarjetas("Sale",dict_horario_inicio['titulo'],horaInicio)
-    //             creartarjetas("Llega",dict_horario_fin['titulo'],horaFin)
-    //             //console.log(`Horario Inicio: ${horaInicio}, Horario Fin: ${horaFin}`);
-    //             horariosMostrados.add(horaInicio);
-    //         }
-    //     }
-    //     else
-    //     {
-    //         if (horariosPermitidos.includes(horaInicio) || horariosPermitidos.includes(horaFin)){
-    //             while (horaInicio >= horaFin) {
-    //                 i++; 
-    //                 if (i >= dict_horario_fin['horarios'].length) {
-    //                 break; 
-    //                 }
-    //                 horaFin = dict_horario_fin['horarios'][i];
-    //             }
-        
-    //             if (horaInicio < horaFin && !horariosMostrados.has(horaInicio)) {
-    //                 creartarjetas("Sale",dict_horario_inicio['titulo'],horaInicio)
-    //                 creartarjetas("Llega",dict_horario_fin['titulo'],horaFin)
-    //                 //console.log(`Horario Inicio: ${horaInicio}, Horario Fin: ${horaFin}`);
-    //                 horariosMostrados.add(horaInicio);
-    //             }
-    //         }
-    //     }
-
-        
-    // }
-
 }
 
 

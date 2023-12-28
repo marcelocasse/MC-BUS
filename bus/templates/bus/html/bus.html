@@ -14,6 +14,17 @@
 
 <!-- ========== Main Section ========== -->
 {% block main %}
+    {% block ads %}
+      <div class="banner">
+        <a href="#">
+          <picture>
+            <source media="(max-width: 640px)" srcset="https://r2.criptoya.com/banner/Xapo_Stablecoin_mobile_x2_02.gif">
+            <source media="(min-width: 641px)" srcset="https://r2.criptoya.com/banner/Xapo_Stablecoin_desktop_x2_02.gif">
+            <img data-type="bannerimg" data-id="Stablecoins 2 - ar" data-device="Desktop" src="https://r2.criptoya.com/banner/Xapo_Stablecoin_desktop_x2_02.gif">
+        </picture>
+        </a>
+      </div>
+    {% endblock ads %}
     <section class="container">
         <div class="row">
           <div class="col-12 col-md-12">
@@ -21,21 +32,21 @@
             <div class="d-flex flex-column align-items-center">
 
               <div class="mb-3 mt-3 w-50">
-                <label for="localidades" class="form-label">Localidad</label>
+                <label for="localidades" class="form-label">Recorrido</label>
                 <select class="form-select text-center" name="localidades" id="localidades">
                   <option selected disabled>Selecciona uno</option>
                 </select>
               </div>
   
               <div class="mb-3 w-50">
-                <label for="lugarinicio" class="form-label">Lugar Inicio</label>
+                <label for="lugarinicio" class="form-label">Lugar de Partida</label>
                 <select class="form-select text-center" name="lugarinicio" id="lugarinicio">
                   <option selected disabled>Selecciona uno</option>
                 </select>
               </div>
               
               <div class="mb-3 w-50">
-                <label for="lugarfinal" class="form-label">Lugar Final</label>
+                <label for="lugarfinal" class="form-label">Lugar de Destino</label>
                 <select class="form-select text-center" name="lugarfinal" id="lugarfinal">
                   <option selected disabled>Selecciona uno</option>
                 </select>
@@ -52,11 +63,13 @@
     <section class="container mt-3">
       <div class="row">
         <div class="col-12 col-md-12">
+          <span class="d-flex justify-content-center visually-hidden py-2" id="spanestimados"><strong>Los horarios son aproximados</strong></span>
           <div class="col-12 col-sm-8 col-md-6 col-lg-8 d-flex flex-row flex-wrap align-items-center
           justify-content-center gap-3 m-auto" id="sectiontest"></div>
         </div>
       </div>
     </section>
+    
 {% endblock main %}
 
 
@@ -67,9 +80,9 @@
         <p class="d-flex flex-column gap-3 text-wrap">Copyright &copy; 2023 <span>Todos los derechos reservados.</span></p>
         
         <ul class="list-unstyled d-flex justify-content-around align-items-center fs-1 flex-wrap m-0 p-3">
-            <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></i></li>
-            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-            <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/marcelo-gabriel-casse/" target="_blank"><i class="fa-brands fa-linkedin"></i></a></i></li>
+            <li><a href="https://www.instagram.com/marcelo.casse/" target="_blank" ><i class="fa-brands fa-instagram"></i></a></li>
+            <li><a href="https://github.com/marcelocasse" target="_blank"><i class="fa-brands fa-github"></i></a></li>
         </ul>
     </div>
 {% endblock footer %}

@@ -19,7 +19,11 @@
     
     <header><nav>{% block nav %}{% endblock nav %}</nav></header>
     
-    <main>{% block main %}{% endblock main %}</main>
+    <main>
+        {% block main %}
+            <section class="ads">{% block ads %}{% endblock ads %}</section>
+        {% endblock main %}
+    </main>
 
     <footer>{% block footer %}{% endblock footer %}</footer>
 
