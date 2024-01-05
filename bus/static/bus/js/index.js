@@ -2,6 +2,10 @@ window.addEventListener('load', async ()=>{
     await CargaInicial()
 })
 
+const LimpiarPantalla = () => {
+    sectiontest.innerHTML = ''
+    spanestimados.classList.add('visually-hidden')
+}
 
 let btnhorarios = document.getElementById("btnhorarios")
 
@@ -9,7 +13,6 @@ btnhorarios.addEventListener('click',async () => {
     sectiontest.innerHTML = ''
     if (dict_horario_fin.horarios.length > 0 && dict_horario_inicio.horarios.length > 0){
         await ponerhorarios()
-        spanestimados.classList.remove("visually-hidden")
     }else{
         sectiontest.innerHTML = `
         <div class="alert alert-danger" role="alert">
@@ -130,9 +133,22 @@ const ponerhorarios = async () => {
             dict_horario_inicio.horarios.pop()
         }
     }
+    //verificamos si los horarios de fin son mayores a los horarios de inicio
+    if(dict_horario_fin.horarios.length > dict_horario_inicio.horarios.length){
+        if(dict_horario_fin.horarios[0].slice(0,2) - dict_horario_inicio.horarios[0].slice(0,2) == -2){
+            dict_horario_fin.horarios.shift()
+        }
+        if(dict_horario_fin.horarios[dict_horario_fin.horarios.length - 1].slice(0,2) - dict_horario_inicio.horarios[dict_horario_inicio.horarios.length - 1].slice(0,2) == 4){
+            dict_horario_fin.horarios.pop()
+        }
+    }
     //Recorremos el array ya filtrado por la condicion anterior
     for (let index = 0; index < dict_horario_inicio.horarios.length; index++) {
         if (dict_horario_inicio.horarios[index] < dict_horario_fin.horarios[index]){
+            
+            //Hacemos visible nuestro span de horarios aproximados
+            spanestimados.classList.remove("visually-hidden")
+
             creartarjetas("Sale",dict_horario_inicio.titulo,dict_horario_inicio.horarios[index])
             if (dict_horario_fin.horarios[index]){
                 creartarjetas("Llega",dict_horario_fin.titulo,dict_horario_fin.horarios[index])
@@ -154,17 +170,20 @@ const CargaInicial= async() => {
     localidades.addEventListener('change',(event)=>{
         ListarLugares(event.target.value)
         bus_id_persistente = event.target.value
-        sectiontest.innerHTML = ''
+        LimpiarPantalla()
     })
 
     lugarinicio.addEventListener('change',(event) =>{
         ListarLugarFinal(event.target.value)
         cargarhorarios(event.target.value,"inicio")
-        sectiontest.innerHTML = ''
+        LimpiarPantalla()
     })
+
     lugarfinal.addEventListener('change', (event) => {
         cargarhorarios(event.target.value,"fin")
-        sectiontest.innerHTML = ''
+        LimpiarPantalla()
+        //buscamos los horarios del lugar de inicio para actualizar los datos
+        cargarhorarios(lugarinicio.value,"inicio")
     })
 
 }
