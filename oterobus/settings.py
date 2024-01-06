@@ -128,3 +128,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 if not DEBUG:
     ALLOWED_HOSTS=config('ALLOWED_HOSTS_DEPLOY',cast=Csv())
+
