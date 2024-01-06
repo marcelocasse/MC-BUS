@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
@@ -10,3 +12,5 @@ urlpatterns = [
     path('api/bus/<int:id>',views.api_bus),
     path('api/parada/<int:id>/horarios',views.api_parada_horarios),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
