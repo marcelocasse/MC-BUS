@@ -2,11 +2,8 @@
 
 Es una web app para ver los horarios de colectivos de mi zona. San José, Entre Rios, Argentina.
 
-# Stack Back-End
--Django
+## Tech Stack
 
-# Stack Front End
--HTML
--CSS,SASS
--Javascript
--Bootstrap
+**Client:** HTML, CSS (SASS), Javascript, Bootstrap
+
+**Server:** Django, SQLITE3.
