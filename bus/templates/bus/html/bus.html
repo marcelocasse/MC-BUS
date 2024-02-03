@@ -2,13 +2,15 @@
 
 {% load static %}
 
-{% block title %}Oterbus | Tu empresa de confianza{% endblock title %}
+{% load token %}
+
+{% block title %}MC Bus | Tu empresa de confianza{% endblock title %}
 
 <!-- ========== Header Section ========== -->
 {% block nav %}
     <div class="brand d-flex align-items-center justify-content-center m-4 p-4 border-2 border-bottom">
         <img src="{% static 'bus/Vectorbus.png' %}" alt="bus">
-        <h1>OTERO<span>BUS</span></h1>
+        <h1>MC<span>BUS</span></h1>
     </div>
 {% endblock nav %}
 
@@ -25,6 +27,7 @@
         </a>
       </div>
     {% endblock ads %} -->
+    <input id="TOKEN" value="{% get_env_var 'TOKEN' %}" type="hidden" />
     <section class="container">
         <div class="row">
           <div class="col-12 col-md-12">
@@ -77,7 +80,7 @@
 {% block footer %}
     <div class="container-fluid sticky-bottom text-center mt-5">
                     
-        <p class="d-flex flex-column gap-3 text-wrap">Copyright &copy; 2023 <span>Todos los derechos reservados.</span></p>
+        <p class="d-flex flex-column gap-3 text-wrap">Copyright &copy; {% now "Y" %} <span>Todos los derechos reservados.</span></p>
         
         <ul class="list-unstyled d-flex justify-content-around align-items-center fs-1 flex-wrap m-0 p-3">
             <li><a href="https://www.linkedin.com/in/marcelo-gabriel-casse/" target="_blank"><i class="fa-brands fa-linkedin"></i></a></i></li>

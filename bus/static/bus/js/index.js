@@ -1,3 +1,4 @@
+
 window.addEventListener('load', async ()=>{
     await CargaInicial()
 })
@@ -6,6 +7,8 @@ const LimpiarPantalla = () => {
     sectiontest.innerHTML = ''
     spanestimados.classList.add('visually-hidden')
 }
+
+let tokenhidden = document.getElementById('TOKEN')
 
 let btnhorarios = document.getElementById("btnhorarios")
 
@@ -30,7 +33,9 @@ let dict_horario_fin = {'titulo':'', 'horarios': ''}
 
 const ListarLugares = async (id_bus) => {
     try {
-        const response = await fetch(`./api/bus/${id_bus}`)
+        const response = await fetch(`./api/bus/${id_bus}`,
+        {headers: {Authorization: `Token ${tokenhidden.value}`}}
+        )
         const data = await response.json()
 
         paradas=data
@@ -52,7 +57,7 @@ const ListarLugares = async (id_bus) => {
 
 const ListarLocalidades = async () =>{
     try {
-        await fetch('./api/sectores')
+        await fetch('./api/sectores', {headers: {Authorization: `Token ${tokenhidden.value}`}})
         .then((data) => data.json())
         .then((data) => {
             data.data.forEach((element) => {
@@ -89,7 +94,7 @@ const  cargarhorarios = async (lugar_inicio,valor) => {
 
     try {
         
-        const response = await fetch(`./api/parada/${lugar_inicio}/horarios`)
+        const response = await fetch(`./api/parada/${lugar_inicio}/horarios`, {headers: {Authorization: `Token ${tokenhidden.value}`}})
         const data = await response.json()
 
             switch (valor){
@@ -108,7 +113,7 @@ const  cargarhorarios = async (lugar_inicio,valor) => {
 }
 
 const creartarjetas = async (titulo,lugar,hora) => {
-    tarjeta=`
+    let tarjeta=`
             <div class="card shadow rounded-4 text-center mb-3 mt-3" id="card-w">
                 <div class="card-header bg-primary rounded-top-4 text-white fs-4 p-2">${titulo}</div>
                     <div class="card-body" id="card-body">

@@ -2,12 +2,17 @@ from django.shortcuts import render
 from .models import Sector,Parada,Horario
 from django.http.response import JsonResponse
 from django.core.exceptions import ObjectDoesNotExist
-
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import api_view,authentication_classes, permission_classes
 
 def base(request):
     return render(request,'bus/html/bus.html',{})
 
 
+@api_view(['GET'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def api_sectores(request):
     try:
         result = {'data':[]}
@@ -23,7 +28,9 @@ def api_sectores(request):
     except ObjectDoesNotExist:
         return JsonResponse(data={'message':"No encontrado"})
 
-
+@api_view(['GET'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def api_bus(request,id):
     try:
         result = []
@@ -37,7 +44,9 @@ def api_bus(request,id):
     except ObjectDoesNotExist:
         return JsonResponse(data={'message':"No encontrado"})
 
-
+@api_view(['GET'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def api_parada_horarios(request,id):
     try:
         horarios = list(Horario.objects.filter(parada_id=id))
