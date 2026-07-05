@@ -34,7 +34,7 @@ let dict_horario_fin = {'titulo':'', 'horarios': ''}
 const ListarLugares = async (id_bus) => {
     try {
         const response = await fetch(`./api/bus/${id_bus}`,
-        {headers: {Authorization: `Token ${tokenhidden.value}`}}
+            {headers: {Authorization: `Token ${tokenhidden.value}`}, cache: "no-store"}
         )
         const data = await response.json()
 
@@ -57,7 +57,7 @@ const ListarLugares = async (id_bus) => {
 
 const ListarLocalidades = async () =>{
     try {
-        await fetch('./api/sectores', {headers: {Authorization: `Token ${tokenhidden.value}`}})
+        await fetch('./api/sectores', {headers: {Authorization: `Token ${tokenhidden.value}`}, cache: "no-store"})
         .then((data) => data.json())
         .then((data) => {
             data.data.forEach((element) => {
@@ -94,7 +94,7 @@ const  cargarhorarios = async (lugar_inicio,valor) => {
 
     try {
         
-        const response = await fetch(`./api/parada/${lugar_inicio}/horarios`, {headers: {Authorization: `Token ${tokenhidden.value}`}})
+        const response = await fetch(`./api/parada/${lugar_inicio}/horarios`, {headers: {Authorization: `Token ${tokenhidden.value}`}, cache: "no-store"})
         const data = await response.json()
 
             switch (valor){
